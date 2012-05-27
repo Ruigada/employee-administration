@@ -15,9 +15,9 @@ namespace employeeAdministration
         [STAThread]
         static void Main()
         {
-            dataBase DB = new dataBase();
+            //dataBase DB = new dataBase();
 
-            DataSet ds = DB.readData("SELECT * FROM users;");
+            //DataSet ds = DB.readData("SELECT * FROM users;");
 
             // DataGrid dg = new DataGrid(); 
 

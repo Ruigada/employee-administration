@@ -20,6 +20,16 @@ namespace employeeAdministration
         {
             return Regex.IsMatch(value, strRegex);
         }
+
+       /* public string determineInput(string firstchar){
+
+            checkValue()
+
+            return result;
+        
+        }*/
+
+
         //////////////////////////////////////////////////////////////////////////////////
         // value checking method
         // calls check string method
@@ -27,34 +37,27 @@ namespace employeeAdministration
         public bool checkValue(string valueKind, string value)
         {
             bool valid = false;
+            
+           
+
             switch (valueKind)
+
             {
-                case "username":
-                    MessageBox.Show("checking username", "regex check", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    valid = this.checkString(value, "([a-zA-Z0-9]{4,10}$)");
-                    break;
-                case "passwd":
-                    MessageBox.Show("checking passwd", "regex check", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    valid = checkString(value, "(^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?!.*s).*$)");
-                    break;
-                case "surname":
-                    MessageBox.Show("checking surname", "regex check", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    valid = checkString(value, "(^[A-Za-z]*$)");
-                    break;
                 case "name":
-                    MessageBox.Show("checking name", "regex check", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    valid = checkString(value, "(^[A-Za-z,.-]*$)");
+                    // Regular Expression nur BUchstaben (klein / groß) maximal 60 Stellen und min. 2 (größe des DB feldes)
+                   //MessageBox.Show("checking name", "regex check", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    valid = checkString(value, @"^[\p{L},.-]{1,40}$");
                     break;
-                case "email":
-                    MessageBox.Show("checking email", "regex check", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    valid = checkString(value, @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
-                    + "@"
-                    + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
+                
+                case "number":
+                    //Regular Expression nur Zahlen minimal 4 Stellen maximal 5 Stellen
+                    //MessageBox.Show("checking Number", "regex check", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    valid = checkString(value, "(^[1-9]{4,5}$)");
                     break;
-                default:
-                    MessageBox.Show("checking Telephone", "regex check", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    valid = checkString(value, "(^[0-9]{6,15}$)");
-                    break;
+
+               /* default:
+                    MessageBox.Show("Please enter a correct Expression", "Wrong Expression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;*/
             }
             return valid;
         } 
